@@ -100,6 +100,7 @@ export default {
         autoplay: {
           disableOnInteraction: false
         },
+        loop: true,
         speed: 1000,
         pagination: {
           el: '.swiper-pagination',
