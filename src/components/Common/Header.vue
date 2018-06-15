@@ -16,8 +16,9 @@
       </ul>
       <!-- 个人、企业会员 -->
       <div class="header_login">
-        <span class="header_login_personal">个人会员</span>
-        <span class="header_login_company">企业会员</span>
+        <span v-if="!getLoginSuccess" class="header_login_personal">个人会员</span>
+        <span v-if="!getLoginSuccess" class="header_login_company">企业会员</span>
+        <img v-if="getLoginSuccess" :src="this.$store.state.visitorImg">
       </div>
     </div>
   </div>
@@ -28,6 +29,7 @@ export default {
   name: 'Header',
   data () {
     return {
+      loginSuccess: false,
       header_logo: '股往金来',
       header_nav: [
         {
@@ -59,6 +61,11 @@ export default {
         this.header_nav[i].isActive = false
       }
       items.isActive = true
+    }
+  },
+  computed: {
+    getLoginSuccess: function () {
+      return this.$store.state.visitor
     }
   }
 }

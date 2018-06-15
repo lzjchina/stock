@@ -1,5 +1,5 @@
 <template>
-  <div class="personLogin">
+  <div class="personLogin" v-if="isShowpersonLogin">
     <ul>
       <li class="personLogin_tagBt">
         <div class="personLogin_tagBtitem" :class="{loginState: PasswordLogin}" @click="clickPasswordLogin">
@@ -10,18 +10,18 @@
         </div>
       </li>
       <li class="personInputMain">
-        <form v-if="PasswordLogin" action="PersonLogin_submit" method="get" accept-charset="utf-8">
+        <form v-if="PasswordLogin">
           <div class="inputBox" :class="{borderblue:NameOnFocus}" @click="focusName">
             <label for="personPswName" class="pswNameLogo"></label>
-            <input type="tel" name="firstname" id="personPswName" placeholder="输入手机号码">
+            <input type="tel" name="personPswName" id="personPswName" placeholder="输入手机号码" v-model="pswNameNum">
           </div>
           <div class="inputBox" :class="{borderblue:pswOnFocus}" @click="focuspsw">
             <label for="personPsw" class="pswPswLogo"></label>
-            <input type="password" name="lastname" id="personPsw" placeholder="输入密码">
+            <input type="password" name="lastname" id="personPsw" placeholder="输入密码" v-model="pswNum">
           </div>
-          <input type="submit" value="登录" class="loginBtn">
+          <input type="submit" value="登录" class="loginBtn" @click="clickLogin">
         </form>
-        <form v-if="VerificationCode" action="PersonLogin_submit" method="get" accept-charset="utf-8">
+        <form v-if="VerificationCode">
           <div class="inputBox" :class="{borderblue:NameOnFocus}" @click="focusName">
             <label for="personPswName" class="pswNameLogo"></label>
             <input type="tel" name="firstname" id="personPswName" placeholder="输入手机号码">
@@ -30,7 +30,7 @@
             <label for="personPsw" class="pswPswLogo"></label>
             <input type="password" name="lastname" id="personPsw" placeholder="输入密码">
           </div>
-          <input type="submit" value="登录" class="loginBtn">
+          <input type="submit" value="登录" class="loginBtn" @click="clickLogin">
         </form>
       </li>
       <li class="functionBox">
@@ -59,10 +59,17 @@ export default {
   data () {
     return {
       PasswordLogin: true,
+      isShowpersonLogin: true,
       VerificationCode: false,
       NameOnFocus: true,
       pswOnFocus: false,
-      isLoginSelf: false
+      isLoginSelf: false,
+      successMsg: {
+        isSuccess: true,
+        imgUrl: 'static/images/logos/search.png'
+      },
+      pswNameNum: '',
+      pswNum: ''
     }
   },
   methods: {
@@ -84,6 +91,17 @@ export default {
     },
     clickLogonSelf: function () {
       this.isLoginSelf = !this.isLoginSelf
+    },
+    clickLogin: function () {
+      // console.log(123)
+      console.log(this.pswNameNum)
+      console.log(this.pswNum)
+      var Account = parseInt(this.pswNameNum, 10)
+      var passwordNum = parseInt(this.pswNum, 10)
+      if (Account === 0 && passwordNum === 0) {
+        this.isShowpersonLogin = false
+        this.$store.commit('newVisitor', this.successMsg)
+      }
     }
   }
 }

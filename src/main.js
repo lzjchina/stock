@@ -6,9 +6,11 @@ import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import axios from 'axios'
+import Vuex from 'vuex'
+import store from './vuex/store'
 
 Vue.config.productionTip = false
-Vue.use(VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper, Vuex)
 Vue.prototype.$ajax = axios
 
 /* eslint-disable no-new */
@@ -16,5 +18,7 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  store,
+  render: h => h(App)
 })
