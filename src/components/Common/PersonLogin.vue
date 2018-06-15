@@ -21,7 +21,7 @@
           </div>
           <input type="submit" value="登录" class="loginBtn">
         </form>
-        <form v-if="VerificationCode" action="PersonLogin_submit" method="get" accept-charset="utf-8">dsdds
+        <form v-if="VerificationCode" action="PersonLogin_submit" method="get" accept-charset="utf-8">
           <div class="inputBox" :class="{borderblue:NameOnFocus}" @click="focusName">
             <label for="personPswName" class="pswNameLogo"></label>
             <input type="tel" name="firstname" id="personPswName" placeholder="输入手机号码">
@@ -34,17 +34,20 @@
         </form>
       </li>
       <li class="functionBox">
-        <div>
-          df
+        <div class="loginSelf" @click="clickLogonSelf">
+          <div>
+            <img src="../../assets/gou.png" v-if="isLoginSelf"/>
+          </div>
+          <span>下次自动登录</span>
         </div>
-        <router-link to="/">忘记密码</router-link>
-        <router-link to="/">立即注册</router-link>
+        <router-link class="ForgetPsw" to="/">忘记密码</router-link>
+        <router-link class="register" to="/">立即注册</router-link>
       </li>
       <li class="othersLoginMethod">
-        其他账户登录
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
+        <span>其他账户登录</span>
+        <img class="LoginMethodLogo" src="../../assets/search.png" alt="">
+        <img class="LoginMethodLogo" src="../../assets/search.png" alt="">
+        <img class="LoginMethodLogo" src="../../assets/search.png" alt="">
       </li>
     </ul>
   </div>
@@ -58,7 +61,8 @@ export default {
       PasswordLogin: true,
       VerificationCode: false,
       NameOnFocus: true,
-      pswOnFocus: false
+      pswOnFocus: false,
+      isLoginSelf: false
     }
   },
   methods: {
@@ -77,6 +81,9 @@ export default {
     focusName: function () {
       this.NameOnFocus = true
       this.pswOnFocus = false
+    },
+    clickLogonSelf: function () {
+      this.isLoginSelf = !this.isLoginSelf
     }
   }
 }
@@ -168,5 +175,50 @@ input:-webkit-autofill {
   color: #fff;
   margin-top: 18px;
   cursor: pointer;
+}
+.functionBox {
+  display: flex;
+  padding: 20px 20px 27px 20px;
+}
+.loginSelf {
+  display: flex;
+  font-size: 14px;
+  color: #999;
+  align-items: center;
+  cursor: pointer;
+}
+.loginSelf div {
+  width: 16px;
+  height: 16px;
+  background: #A2C1FF;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 9px;
+}
+.ForgetPsw, .register {
+  color: #427AEC;
+  font-size: 14px;
+}
+.ForgetPsw {
+  margin-left: 10px;
+}
+.register {
+  margin-left: 72px;
+}
+.othersLoginMethod {
+  padding: 20px 20px 0 20px;
+  border-top: 1px solid #D7D7D7;
+  font-size: 14px;
+  color: #777;
+  display: flex;
+  align-items: center;
+}
+.othersLoginMethod span {
+  margin-right: 18px;
+}
+.LoginMethodLogo {
+  margin-right: 26px;
 }
 </style>

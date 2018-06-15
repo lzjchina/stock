@@ -2,19 +2,19 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <Header></Header>
-    <PersonLogin></PersonLogin>
+    <!-- <PersonLogin></PersonLogin> -->
     <router-view/>
   </div>
 </template>
 
 <script>
 import Header from './components/Common/Header'
-import PersonLogin from './components/Common/PersonLogin'
+// import PersonLogin from './components/Common/PersonLogin'
 export default {
   name: 'App',
   components: {
-    Header,
-    PersonLogin
+    Header
+    // PersonLogin
   }
 }
 </script>

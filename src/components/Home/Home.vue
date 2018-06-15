@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <!-- <Header></Header> -->
+    <PersonLogin></PersonLogin>
     <!-- 轮播 -->
     <swiper class="slid" :options="swiperOption" ref="mySwiper">
       <swiper-slide v-for="(str, index) in listImg" :style="{ background: 'url(' + str.url + ')' + 'center/100% 100% no-repeat' }" :key="index"></swiper-slide>
@@ -77,6 +78,7 @@
 <script>
 // import Header from '../Common/Header'
 import Footer from '../Common/Footer'
+import PersonLogin from '../Common/PersonLogin'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'Home',
@@ -84,7 +86,8 @@ export default {
     // Header,
     Footer,
     swiper,
-    swiperSlide
+    swiperSlide,
+    PersonLogin
   },
   data () {
     return {
