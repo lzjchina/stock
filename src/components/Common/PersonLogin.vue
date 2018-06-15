@@ -37,6 +37,8 @@
         <div>
           df
         </div>
+        <router-link to="/">忘记密码</router-link>
+        <router-link to="/">立即注册</router-link>
       </li>
       <li class="othersLoginMethod">
         其他账户登录
