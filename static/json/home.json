@@ -445,5 +445,187 @@
         }
       ]
     }
+  },
+  "changeCity": {
+    "city16": [
+      {
+        "name":"全国",
+        "isActive": false
+      },
+      {
+        "name":"北京",
+        "isActive": false
+      },
+      {
+        "name":"广州",
+        "isActive": false
+      },
+      {
+        "name":"深圳",
+        "isActive": true
+      },
+      {
+        "name":"杭州",
+        "isActive": false
+      },
+      {
+        "name":"成都",
+        "isActive": false
+      },
+      {
+        "name":"重庆",
+        "isActive": false
+      },
+      {
+        "name":"大连",
+        "isActive": false
+      },
+      {
+        "name":"南京",
+        "isActive": false
+      },
+      {
+        "name":"青岛",
+        "isActive": false
+      },
+      {
+        "name":"天津",
+        "isActive": false
+      },
+      {
+        "name":"武汉",
+        "isActive": false
+      },
+      {
+        "name":"郑州",
+        "isActive": false
+      },
+      {
+        "name":"厦门",
+        "isActive": false
+      },
+      {
+        "name":"苏州",
+        "isActive": false
+      }
+    ],
+    "moreCity": [
+      {
+        "name":"全国",
+        "isActive": false
+      },
+      {
+        "name":"北京",
+        "isActive": false
+      },
+      {
+        "name":"广州",
+        "isActive": false
+      },
+      {
+        "name":"深圳",
+        "isActive": false
+      },
+      {
+        "name":"杭州",
+        "isActive": false
+      },
+      {
+        "name":"成都",
+        "isActive": false
+      },
+      {
+        "name":"重庆",
+        "isActive": false
+      },
+      {
+        "name":"大连",
+        "isActive": false
+      },
+      {
+        "name":"南京",
+        "isActive": false
+      },
+      {
+        "name":"青岛",
+        "isActive": false
+      },
+      {
+        "name":"天津",
+        "isActive": false
+      },
+      {
+        "name":"武汉",
+        "isActive": false
+      },
+      {
+        "name":"郑州",
+        "isActive": false
+      },
+      {
+        "name":"厦门",
+        "isActive": false
+      },
+      {
+        "name":"苏州",
+        "isActive": false
+      },
+      {
+        "name":"北京",
+        "isActive": false
+      },
+      {
+        "name":"广州",
+        "isActive": false
+      },
+      {
+        "name":"深圳",
+        "isActive": true
+      },
+      {
+        "name":"杭州",
+        "isActive": false
+      },
+      {
+        "name":"成都",
+        "isActive": false
+      },
+      {
+        "name":"重庆",
+        "isActive": false
+      },
+      {
+        "name":"大连",
+        "isActive": false
+      },
+      {
+        "name":"南京",
+        "isActive": false
+      },
+      {
+        "name":"青岛",
+        "isActive": false
+      },
+      {
+        "name":"天津",
+        "isActive": false
+      },
+      {
+        "name":"武汉",
+        "isActive": false
+      },
+      {
+        "name":"郑州",
+        "isActive": false
+      },
+      {
+        "name":"厦门",
+        "isActive": false
+      },
+      {
+        "name":"苏州",
+        "isActive": false
+      }
+    ]
   }
 }

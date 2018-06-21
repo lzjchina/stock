@@ -1,6 +1,12 @@
 <template>
   <div class="home">
-    <!-- <Header></Header> -->
+    <!-- 头部 -->
+    <Header homenum="0" propRouternum=0 getBgcolor="rgba(45, 45, 45, 0.5)" isConmonStyle=false></Header>
+    <!-- 切换城市 -->
+    <ChangeCity></ChangeCity>
+    <!-- 注册 -->
+    <CheckIn></CheckIn>
+    <!-- 登录 -->
     <PersonLogin></PersonLogin>
     <!-- 轮播 -->
     <swiper class="slid" :options="swiperOption" ref="mySwiper">
@@ -37,11 +43,13 @@
       <div class="home_main_box">
         <!-- 导航 -->
         <ul class="home_main_nav">
-          <li class="home_main_navItems" v-for="(item, index) in home_main_navBtNames" :key="index">
+          <li class="home_main_navItems" v-for="(item, index) in home_main_navBtNames" :key="index" :class="{active:item.isClick}">
             <div @click="clickNavBtn(index, item, item.id)" class="home_main_navBtns" :class="{active:item.isClick}">
-              <img :src="item.logo" alt="">{{item.name}}
+              <img :src="item.logo" alt="">
+              <span>{{item.name}}</span>
+              <div class="home_Triangle" v-if="item.isClick"></div>
             </div>
-            <span class="home_main_navLine"></span>
+            <!-- <span class="home_main_navLine"></span> -->
           </li>
         </ul>
         <!-- 列表 -->
@@ -76,18 +84,22 @@
 </template>
 
 <script>
-// import Header from '../Common/Header'
+import Header from './Header'
 import Footer from '../Common/Footer'
+import CheckIn from './CheckIn'
+import ChangeCity from './ChangeCity'
 import PersonLogin from '../Common/PersonLogin'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'Home',
   components: {
-    // Header,
+    Header,
     Footer,
     swiper,
     swiperSlide,
-    PersonLogin
+    CheckIn,
+    PersonLogin,
+    ChangeCity
   },
   data () {
     return {
@@ -173,7 +185,7 @@ export default {
       _this.homeDta_tbody = res.data.table.home_tbody.Finance
       // console.log(_this.homeDta.table.home_thead)
       // console.log(_this.homeDta_thead)
-      console.log(_this.homeDta_tbody)
+      // console.log(_this.homeDta_tbody)
     })
   },
   methods: {
@@ -204,8 +216,9 @@ export default {
 }
 .slid {
   width: 100%;
-  height: 462px;
-  margin-top: 80px;
+  /*height: 462px;*/
+  height: 756px;
+  /*margin-top: 80px;*/
 }
 .slid .swiper-pagination-bullet {
   background: #8f9cb2;
@@ -220,9 +233,15 @@ export default {
 }
 .home_search {
   width: 100%;
-  height: 132px;
-  padding-top: 40px;
-  border-bottom: 1px solid #d7d7d7;
+  height: 60px;
+  /*padding-top: 40px;*/
+  /*border-bottom: 1px solid #d7d7d7;*/
+  position: absolute;
+  top: 600px;
+  z-index: 10;
+  height: 135px;
+  padding-top: 21px;
+  background: rgba(5, 5, 5, 0.5);
 }
 .home_searchBox {
   width: 1100px;
@@ -233,40 +252,47 @@ export default {
 }
 .home_search_input {
   width: 792px;
-  height: 68px;
+  height: 60px;
   display: flex;
 }
 .home_search_input .home_inputbox {
   width: 610px;
-  height: 64px;
+  height: 56px;
   font-size: 20px;
   color: #999;
-  line-height: 64px;
+  line-height: 56px;
   padding-left: 21px;
 }
 .home_searchbtn {
-  background: lightblue;
+  background: -webkit-linear-gradient(#FFE19C, #B58516); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#FFE19C, #B58516); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#FFE19C, #B58516); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#FFE19C, #B58516); /* 标准的语法 */
   cursor: pointer;
-  padding: 0 25px;
-  height: 68px;
+  padding: 0 28px;
+  height: 60px;
   display: flex;
   align-items: center;
 }
+.home_searchbtn img {
+  width: 38px;
+  height: 39px;
+}
 .home_searchText {
   display: inline-block;
-  height: 68px;
-  line-height: 68px;
-  margin-left: 12px;
+  height: 60px;
+  line-height: 60px;
+  margin-left: 14px;
   font-size: 24px;
   color: #FEFEFE;
 }
 .home_newAddProject {
   width: 288px;
-  height: 68px;
+  height: 60px;
   background: #ebebeb;
   font-size: 18px;
   color: #999;
-  line-height: 68px;
+  line-height: 60px;
   text-align: center;
 }
 .home_newAddProject .home_newAddProjectNum {
@@ -283,7 +309,7 @@ export default {
   margin: 0 auto;
   padding-top: 14px;
   font-size: 16px;
-  color: #999;
+  color: #fff;
 }
 .home_search_hotW {
   margin-right: 30px;
@@ -295,33 +321,45 @@ export default {
   background: #f3f3f3;
 }
 .home_main_box {
-  width: 1060px;
+  width: 1140px;
   margin: 0 auto;
   background: #fff;
-  padding: 40px 20px 120px 20px;
+  padding: 37px 30px 203px 30px;
 }
 .home_main_nav {
   display: flex;
   align-items: center;
+  /*padding-bottom: 49px;*/
+  margin-bottom: 54px;
+  border-bottom: 1px solid #D7D7D7;
 }
 .home_main_navItems {
-  display: flex;
+  /*display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;*/
+  width: 160px;
+  height: 179px;
+  margin-right: 34px;
+}
+.home_main_navItems.active {
+  border-bottom: 3px solid #CA9F3B;
 }
 .home_main_navBtns {
   font-size: 22px;
   color: #444;
-  width: 177px;
-  height: 50px;
+  width: 160px;
+  height: 130px;
   line-height: 50px;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 1px solid #D7D7D7;
+  position: relative;
 }
 .home_main_navBtns.active {
-  background: #F4AB00;
+  background: #CA9F3B;
   color: #fff;
 }
 .home_main_navItems img {
@@ -340,7 +378,8 @@ export default {
   border-left: 0px dotted #777;
 }
 .home_table {
-  width: 1060px;
+  /*width: 1060px;*/
+  width: 1080px;
   margin: 0 auto;
   text-align: center;
 }
@@ -354,6 +393,7 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  color: #666666;
 }
 .home_th2 {
   width: 310px;
@@ -365,6 +405,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #222222;
 }
 .home_th3 {
   width: 163px;
@@ -376,6 +417,7 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  color: #CA9F3B;
 }
 .home_th4 {
   width: 169px;
@@ -387,6 +429,7 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  color: #777777;
 }
 .home_th5 {
   width: 162px;
@@ -398,6 +441,7 @@ export default {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+  color: #999999;
 }
 .home_table thead tr {
   background: #F3F3F3;
@@ -418,7 +462,7 @@ export default {
   background: #fff;
 }
 .home_table tbody tr .stating {
-  color: #427AEC;
+  color: #FF7112;
 }
 .home_moreProject {
   cursor: pointer;
@@ -430,7 +474,28 @@ export default {
   border-radius: 10px;
   line-height: 70px;
   text-align: center;
-  color: #F4AB00;
+  color: #CA9F3B;
   font-size: 24px;
+}
+.home_table thead tr th {
+  font-size: 18px;
+  color: #fff;
+  background: #CA9F3B;
+  border-right: 1px solid #fff;
+}
+.home_table thead tr th:last-child {
+  border: none;
+}
+.home .slid .swiper-pagination-fraction[data-v-14708408], .swiper-pagination-custom[data-v-14708408], .swiper-container-horizontal > .swiper-pagination-bullets[data-v-14708408] {
+  bottom: 213px;
+}
+.home_Triangle {
+  position: absolute;
+  bottom: -40px;
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: #CA9F3B transparent transparent transparent;
 }
 </style>

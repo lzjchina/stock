@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <Header></Header>
+    <!-- <Header></Header> -->
     <!-- <PersonLogin></PersonLogin> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-import Header from './components/Common/Header'
+// import Header from './components/Common/Header'
 // import PersonLogin from './components/Common/PersonLogin'
 export default {
   name: 'App',
   components: {
-    Header
+    // Header
     // PersonLogin
   }
 }
@@ -29,8 +29,10 @@ h1,h2,h3,h4,h5,h6,b,strong{font-weight:100;}
 i,em{font-style:normal;}
 body{font:12px "MicrosoftYaHei";}
 .slid .swiper-pagination-bullet {
-  background: #8f9cb2;
-  opacity: 1;
+  background: #fff;
+  opacity: 0.42;
+  width: 18px;
+  height: 18px;
 }
 .slid .swiper-pagination-bullet-active {
   background: #fff;

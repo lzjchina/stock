@@ -4,6 +4,7 @@ import Home from '@/components/Home/Home'
 import Aboutus from '@/components/Aboutus/Aboutus'
 import StockPublic from '@/components/StockPublic/StockPublic'
 import StockSchool from '@/components/StockSchool/StockSchool'
+import CreatCards from '@/components/Home/CreatCards'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/StockSchool',
       name: 'StockSchool',
       component: StockSchool
+    },
+    {
+      path: '/CreatCards',
+      name: 'CreatCards',
+      component: CreatCards
     }
   ]
 })

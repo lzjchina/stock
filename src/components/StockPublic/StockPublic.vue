@@ -1,18 +1,18 @@
 <template>
   <div class="StockPublic">
-    <!-- <Header></Header> -->
+    <Header propRouternum="1" getBgcolor="#fff" isConmonStyle=true></Header>
     <Footer></Footer>
     {{msg}}
   </div>
 </template>
 
 <script>
-// import Header from '../Common/Header'
+import Header from '../Common/Header'
 import Footer from '../Common/Footer'
 export default {
   name: 'StockPublic',
   components: {
-    // Header,
+    Header,
     Footer
   },
   data () {

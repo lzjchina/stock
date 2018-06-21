@@ -8,7 +8,7 @@
         <span class="footer_border">传真：0755-26577562</span>
       </li>
       <li class="footer_line2">
-        <span class="footer_border"><router-link class="footer_color" to="/">关于我们</router-link></span>
+        <span class="footer_border" @click="emitRouterNameNum(3)"><router-link class="footer_color" to="/Aboutus">关于我们</router-link></span>
         <span class="footer_border"><router-link class="footer_color" to="/">联系我们</router-link></span>
         <span class="footer_border"><router-link class="footer_color" to="/">法律声明</router-link></span>
         <span class="footer_border">粤公网安备：44030502001710</span>
@@ -26,6 +26,11 @@ export default {
   data () {
     return {
       msg: '古往今来'
+    }
+  },
+  methods: {
+    emitRouterNameNum: function (num) {
+      this.$store.commit('getJumpRouterName', num)
     }
   }
 }

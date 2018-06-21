@@ -4,7 +4,7 @@
       <!-- logo -->
       <span class="header_logo" @click="initNav('/')">{{header_logo}}</span>
       <div class="header_city" @click="showChangeCity">
-        <span class="header_cityName_common" >深圳</span>
+        <span class="header_cityName" >深圳</span>
         <span class="header_cityChange">[切换城市]</span>
         <span class="header_cityLocal"></span>
       </div>
@@ -98,9 +98,7 @@ export default {
     var temp = this.routNun
     for (var i = this.header_nav.length - 1; i >= 0; i--) {
       this.header_nav[i].isActive = false
-      if (temp <= this.header_nav.length - 1) {
-        this.header_nav[temp].isActive = true
-      }
+      this.header_nav[temp].isActive = true
     }
   }
 }
@@ -111,11 +109,10 @@ export default {
 .header {
   width: 100%;
   height: 80px;
-  background: #fff;
+  background: rgba(45, 45, 45, 0.5);
   position: fixed;
   top: 0;
   z-index: 999;
-  border-bottom: 1px solid #D7D7D7;
 }
 .header_box {
   /*width: 1100px;*/
@@ -137,21 +134,18 @@ export default {
   align-items: center;
   margin-left: 18px;
 }
-/*.header_cityName {
-  font-size: 16px;
-  color: #FFE4AA;
-  cursor: pointer;
-  margin-left: 15px;
-}*/
-.header_cityName_common {
+.header_cityName {
   font-size: 16px;
   color: #FFE4AA;
   cursor: pointer;
   margin-left: 15px;
 }
+.header_cityName_common {
+  color: #FFE4AA;
+}
 .header_cityChange {
   font-size: 16px;
-  color: #999;
+  color: #CA9F3B;
   cursor: pointer;
   margin-left: 15px;
 }
@@ -178,11 +172,11 @@ export default {
   background: -o-linear-gradient(#FFE19C, #B58516);
   background: -moz-linear-gradient(#FFE19C, #B58516);
   background: linear-gradient(#FFE19C, #B58516);*/
-  border-bottom: 3px solid rgb(190, 148, 43);
+  border-bottom: 3px solid #fff;
   color: #fff;
 }
 .header_nav li.active a {
-  color: rgb(190, 148, 43);
+  color: #fff;
 }
 .commonClass.header_nav li.active {
   /*background: -webkit-linear-gradient(#FFE19C, #B58516);
@@ -200,7 +194,7 @@ export default {
   height: 80px;
   line-height: 80px;
   padding: 0 20px;
-  color: #222;
+  color: #FFE4AA;
   cursor: pointer;
   font-size: 18px;
 }

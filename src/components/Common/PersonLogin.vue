@@ -1,5 +1,5 @@
 <template>
-  <div class="personLogin" v-if="isShowpersonLogin">
+  <div class="personLogin" v-if="getIsShowpersonLogin">
     <ul>
       <li class="personLogin_tagBt">
         <div class="personLogin_tagBtitem" :class="{loginState: PasswordLogin}" @click="clickPasswordLogin">
@@ -10,28 +10,30 @@
         </div>
       </li>
       <li class="personInputMain">
-        <form v-if="PasswordLogin">
+        <!-- 密码登录 -->
+        <div v-if="PasswordLogin">
           <div class="inputBox" :class="{borderblue:NameOnFocus}" @click="focusName">
             <label for="personPswName" class="pswNameLogo"></label>
-            <input type="tel" name="personPswName" id="personPswName" placeholder="输入手机号码" v-model="pswNameNum">
+            <input type="tel" name="personPswName" id="personPswName" placeholder="输入手机号/用户名/邮箱" v-model="pswNameNum">
           </div>
           <div class="inputBox" :class="{borderblue:pswOnFocus}" @click="focuspsw">
             <label for="personPsw" class="pswPswLogo"></label>
-            <input type="password" name="lastname" id="personPsw" placeholder="输入密码" v-model="pswNum">
+            <input type="password" name="lastname" id="personPsw" placeholder="密码（6-16字母，数字，空格）" v-model="pswNum">
           </div>
-          <input type="submit" value="登录" class="loginBtn" @click="clickLogin">
-        </form>
-        <form v-if="VerificationCode">
+          <input type="button" value="登录" class="loginBtn" @click="clickLogin">
+        </div>
+        <!-- 验证码登录 -->
+        <div v-if="VerificationCode">
           <div class="inputBox" :class="{borderblue:NameOnFocus}" @click="focusName">
-            <label for="personPswName" class="pswNameLogo"></label>
-            <input type="tel" name="firstname" id="personPswName" placeholder="输入手机号码">
+            <label for="codePswName" class="pswNameLogo"></label>
+            <input type="tel" name="phoneNum" id="codePswName" class="codeInputPhoneNum" placeholder="输入手机号码">
           </div>
-          <div class="inputBox" :class="{borderblue:pswOnFocus}" @click="focuspsw">
-            <label for="personPsw" class="pswPswLogo"></label>
-            <input type="password" name="lastname" id="personPsw" placeholder="输入密码">
+          <div @click="focuspsw">
+            <input type="text" name="codeNum" class="codepersonPsw" placeholder="输入密码" :class="{borderblue:pswOnFocus}">
+            <input type="button" name="GetcodeNum" class="GetcodeNumBtn" value="获取验证码">
           </div>
-          <input type="submit" value="登录" class="loginBtn" @click="clickLogin">
-        </form>
+          <input type="button" value="登录" class="loginBtn" @click="clickLogin">
+        </div>
       </li>
       <li class="functionBox">
         <div class="loginSelf" @click="clickLogonSelf">
@@ -40,11 +42,11 @@
           </div>
           <span>下次自动登录</span>
         </div>
-        <router-link class="ForgetPsw" to="/">忘记密码</router-link>
-        <router-link class="register" to="/">立即注册</router-link>
+        <span class="ForgetPsw">忘记密码</span>
+        <span class="register" @click="showCheckIn">立即注册</span>
       </li>
       <li class="othersLoginMethod">
-        <span>其他账户登录</span>
+        <span>其他账户登录:</span>
         <img class="LoginMethodLogo" src="../../assets/search.png" alt="">
         <img class="LoginMethodLogo" src="../../assets/search.png" alt="">
         <img class="LoginMethodLogo" src="../../assets/search.png" alt="">
@@ -59,7 +61,6 @@ export default {
   data () {
     return {
       PasswordLogin: true,
-      isShowpersonLogin: true,
       VerificationCode: false,
       NameOnFocus: true,
       pswOnFocus: false,
@@ -70,6 +71,11 @@ export default {
       },
       pswNameNum: '',
       pswNum: ''
+    }
+  },
+  computed: {
+    getIsShowpersonLogin: function () {
+      return this.$store.state.isShowpersonLogin
     }
   },
   methods: {
@@ -99,9 +105,14 @@ export default {
       var Account = parseInt(this.pswNameNum, 10)
       var passwordNum = parseInt(this.pswNum, 10)
       if (Account === 0 && passwordNum === 0) {
-        this.isShowpersonLogin = false
+        this.$store.commit('emitisShowpersonLogin', false)
         this.$store.commit('newVisitor', this.successMsg)
       }
+    },
+    showCheckIn: function () {
+      console.log(123132156465)
+      this.$store.commit('emitisShowpersonLogin', false)
+      this.$store.commit('emitisShowCheckIn', true)
     }
   }
 }
@@ -116,17 +127,18 @@ export default {
   z-index: 99;
   background: #fff;
   width: 350px;
-  height: 380px;
+  height: 422px;
   border-radius: 5px;
 }
 .personLogin_tagBt {
   display: flex;
-  width: 100%;
-  height: 55px;
+  width: 350px;
+  height: 65px;
+  padding: 0 30px 0 20px;
 }
 .personLogin_tagBtitem {
   height: 55px;
-  width: 175px;
+  width: 154px;
   text-align: center;
   line-height: 55px;
   border-bottom: 1px solid #D7D7D7;
@@ -135,8 +147,8 @@ export default {
   color: #777777;
 }
 .personLogin_tagBtitem.loginState {
-  border-bottom: 1px solid #F4AB00;
-  color: #F4AB00;
+  border-bottom: 1px solid #B58516;
+  color: #CA9F3B;
 }
 .inputBox {
   width: 310px;
@@ -172,8 +184,17 @@ export default {
   border: 0;
   background: none;
 }
+.codeInputPhoneNum {
+  width: 255px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 14px;
+  color: #999;
+  border: 0;
+  background: none;
+}
 .borderblue {
-  border: 1px solid #A2C1FF;
+  border: 1px solid #FF7112;
 }
 input:-webkit-autofill {
   box-shadow: 0 0 0px 1000px white inset !important;
@@ -185,7 +206,10 @@ input:-webkit-autofill {
   width: 310px;
   height: 52px;
   border-radius: 4px;
-  background: #F4AB00;
+  background: -webkit-linear-gradient(#FFE19C, #B58516); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#FFE19C, #B58516); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#FFE19C, #B58516); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#FFE19C, #B58516); /* 标准的语法 */
   font-size: 22px;
   text-align: center;
   line-height: 52px;
@@ -208,7 +232,7 @@ input:-webkit-autofill {
 .loginSelf div {
   width: 16px;
   height: 16px;
-  background: #A2C1FF;
+  background: #C79C37;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -216,8 +240,9 @@ input:-webkit-autofill {
   margin-right: 9px;
 }
 .ForgetPsw, .register {
-  color: #427AEC;
+  color: #FF7112;
   font-size: 14px;
+  cursor: pointer;
 }
 .ForgetPsw {
   margin-left: 10px;
@@ -238,5 +263,31 @@ input:-webkit-autofill {
 }
 .LoginMethodLogo {
   margin-right: 26px;
+}
+.codepersonPsw {
+  width: 142px;
+  height: 38px;
+  border-radius: 4px;
+  border: 1px solid #D7D7D7;
+  padding-left: 21px;
+  color: #999;
+  font-size: 14px;
+  line-height: 38px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.GetcodeNumBtn {
+  width: 133px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #FFF3D6;
+  color: #C1942B;
+  font-size: 14px;
+  border: none;
+  border: 0;
+  margin-left: 8px;
+  margin-bottom: 14px;
+  cursor: pointer;
 }
 </style>
