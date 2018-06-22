@@ -168,7 +168,11 @@ export default {
           isClick: false,
           id: 'other'
         }
-      ]
+      ],
+      StockDetails_needMsg: {
+        s_id: 'Finance',
+        s_index: 0
+      }
     }
   },
   computed: {
@@ -189,6 +193,9 @@ export default {
   },
   methods: {
     clickNavBtn: function (index, item, id) {
+      var _this = this
+      this.StockDetails_needMsg.s_id = id
+      this.$store.commit('emitStockDetailsMsg', _this.StockDetails_needMsg)
       for (var i = this.home_main_navBtNames.length - 1; i >= 0; i--) {
         this.home_main_navBtNames[i].isClick = false
       }
@@ -205,8 +212,10 @@ export default {
       })
     },
     jumpToStockDetails: function (index) {
-      console.log(index)
-      this.$store.commit('emitStockDetailsMsg', index)
+      // console.log(index)
+      var _this = this
+      this.StockDetails_needMsg.s_index = index
+      this.$store.commit('emitStockDetailsMsg', _this.StockDetails_needMsg)
       this.$router.push('/StockDetails?nameNum=' + index)
     }
   }

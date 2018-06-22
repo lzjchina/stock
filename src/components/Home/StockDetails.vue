@@ -8,9 +8,9 @@
         <div class="StockDetails_companyMsg">
           <img src="static/images/company1.png">
           <ul class="StockDetails_companyTips">
-            <li class="StockDetails_companyName"> 股王金来网络有限公司</li>
-            <li class="StockDetails_companyDescribe">股王金来网络有限公司是最专业的股权转让平台</li>
-            <li class="StockDetails_companyType">互联网</li>
+            <li class="StockDetails_companyName">{{stockData.StockDetails_companyName}}</li>
+            <li class="StockDetails_companyDescribe">{{stockData.StockDetails_companyDescribe}}</li>
+            <li class="StockDetails_companyType">{{stockData.StockDetails_companyType}}</li>
           </ul>
           <div class="StockDetails_Iwant">我有意向</div>
         </div>
@@ -31,29 +31,28 @@
             </div>
             <ul class="stockDetails_margin_tl_3835">
               <li class="stockDetails_margin_b_41">
-                <h4 class="stockDetails_details_companyName">某某有限公司</h4>
-                <p>公司成立于 2003 年，15 年专注于反光材料和反光服生产、研发、销售，是目前国内专业的反光布生产工厂。公司产品通过欧美国际认证并远销世界各地，与国内外客户包括欧美 500 强企业保持多年合作。 公司 2016 年挂牌新三板，已成为国内目前反光布规模最大的龙头企业。
-</p>
+                <h4 class="stockDetails_details_companyName">{{stockData.stockDetails_details_companyName}}</h4>
+                <p>{{stockData.stockDetails_details_companyTips}}</p>
               </li>
               <li class="stockDetails_margin_b_41 stockDetails_flex">
                 <h4 class="stockDetails_margin_r_15">发布时间：</h4>
-                <p>2018-08-08至2018-09-09</p>
+                <p>{{stockData.publicTime}}</p>
               </li>
               <li class="stockDetails_margin_b_41 stockDetails_flex">
                 <h4 class="stockDetails_margin_r_15">职工人数 :</h4>
-                <p>50~100人</p>
+                <p>{{stockData.workerNum}}</p>
               </li>
               <li class="stockDetails_margin_b_41 stockDetails_flex">
                 <h4 class="stockDetails_margin_r_15">项目所属阶段：</h4>
-                <p>未纰露</p>
+                <p>{{stockData.projectStep}}</p>
               </li>
               <li class="stockDetails_margin_b_41 stockDetails_flex">
                 <h4 class="stockDetails_margin_r_15">办公地址 :</h4>
-                <p>广东省深圳市南山区深圳生态科技园A栋</p>
+                <p>{{stockData.position}}</p>
               </li>
               <li class="stockDetails_margin_b_41 stockDetails_flex">
                 <h4 class="stockDetails_margin_r_15">官网：</h4>
-                <p>www.guwangjl.com</p>
+                <p>{{stockData.network}}</p>
               </li>
             </ul>
           </div>
@@ -66,33 +65,33 @@
               <ul>
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">是否涉及重大债权债务处置事项 :</h4>
-                  <p>否</p>
+                  <p>{{stockData.iszaiwu}}</p>
                 </li>
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">是否涉及管理层参与受让：</h4>
-                  <p>否</p>
+                  <p>{{stockData.isguanli}}</p>
                 </li>
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">是否涉及职工安置：</h4>
-                  <p>否</p>
+                  <p>{{stockData.iszgap}}</p>
                 </li>
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">是否涉及外资收购限制或者禁制：</h4>
-                  <p>否</p>
+                  <p>{{stockData.iswaizi}}</p>
                 </li>
               </ul>
               <ul style="position: absolute;left: 414px;">
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">原股东是否放弃优先受让权：</h4>
-                  <p>否</p>
+                  <p>{{stockData.network}}</p>
                 </li>
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">是否含有国有划拨土地：</h4>
-                  <p>否</p>
+                  <p>{{stockData.isguoyoudi}}</p>
                 </li>
                 <li class="stockDetails_flex stockDetails_margin_b_41">
                   <h4 class="stockDetails_margin_r_15">是否涉及上市公司国有股权间接转让：</h4>
-                  <p>否</p>
+                  <p>{{stockData.isshangshi}}</p>
                 </li>
               </ul>
             </div>
@@ -104,12 +103,12 @@
             </div>
             <div class="StockDetails_linkStyle">
               <ul class="StockDetails_linkStyle_sec1">
-                <li><i>联系人：</i><span>张先生</span></li>
-                <li><i>邮箱：</i><span>1****@qq.com</span></li>
+                <li><i>联系人：</i><span>{{stockData.linkPeople}}</span></li>
+                <li><i>邮箱：</i><span>{{stockData.email}}</span></li>
               </ul>
               <ul class="StockDetails_linkStyle_sec2">
-                <li><i>电话：</i><span>134****1061</span></li>
-                <li><i>微信：</i><span>134****1061</span></li>
+                <li><i>电话：</i><span>{{stockData.tel}}</span></li>
+                <li><i>微信：</i><span>{{stockData.wechat}}</span></li>
               </ul>
             </div>
           </div>
@@ -125,7 +124,29 @@
         </div>
         <!-- side -->
         <div class="StockDetails_side">
-          gkdnsnbignbfgi
+          <h1>本轮股权转让信息</h1>
+          <ul>
+            <li>
+              <span>转让对价</span>
+              <b>{{stockData.zrdj}}</b>
+            </li>
+            <li>
+              <span>股权占比</span>
+              <b>{{stockData.gqzb}}</b>
+            </li>
+            <li>
+              <span>本轮估值</span>
+              <b>{{stockData.mgjq}}</b>
+            </li>
+            <li>
+              <span>每股多少价格</span>
+              <b>{{stockData.blgz}}</b>
+            </li>
+          </ul>
+          <p>
+            <span>备注：</span>
+            {{stockData.bz}}
+          </p>
         </div>
       </div>
     </div>
@@ -144,7 +165,10 @@ export default {
   },
   data () {
     return {
-      msg: 'StockDetails',
+      msg: {
+        uid: '',
+        num: 1
+      },
       navNames: [
         {
           name: '项目介绍',
@@ -162,12 +186,18 @@ export default {
           name: '项目文档',
           isActive: false
         }
-      ]
+      ],
+      stockData: ''
     }
   },
   beforeMount () {
-    this.msg = this.$store.state.StockDetailsMsg
-    console.log(this.$store.state.StockDetailsMsg)
+    var _this = this
+    this.msg.uid = this.$store.state.StockDetailsMsg.s_id
+    this.msg.num = this.$store.state.StockDetailsMsg.s_index
+    console.log(this.msg)
+    this.$ajax.get('static/json/stockDetails.json').then(function (res) {
+      _this.stockData = res.data[_this.msg.uid]['index' + _this.msg.num]
+    })
   },
   methods: {
     clickcompanyMsgNav: function (items) {
@@ -287,12 +317,38 @@ export default {
   background: #fff;
 }
 .StockDetails_side {
-  width: 370px;
-  height: 430px;
+  width: 330px;
+  height: 410px;
+  padding: 20px 20px 0 20px;
   max-height: 500px;
   margin-left: 20px;
   margin-top: 20px;
   background: #fff;
+}
+.StockDetails_side ul {
+  margin-top: 26px;
+}
+.StockDetails_side p {
+  margin-top: 34px;
+  font-size: 14px;
+  color: #666666;
+}
+.StockDetails_side span {
+  font-size: 14px;
+  color: #222222;
+  font-weight: bold;
+}
+.StockDetails_side ul li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #D7D7D7;
+  padding-bottom: 10px;
+  margin-top: 35px;
+}
+.StockDetails_side ul li b{
+  font-size: 16px;
+  color: #C1932B;
+  font-weight: bold;
 }
 .StockDetails_title {
   display: flex;

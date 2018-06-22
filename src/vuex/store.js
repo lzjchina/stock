@@ -12,7 +12,10 @@ const store = new Vuex.Store({
     isShowpersonLogin: false,
     isShowChangeCity: false,
     isShowCheckIn: true,
-    StockDetailsMsg: ''
+    StockDetailsMsg: {
+      s_id: '',
+      s_index: 0
+    }
   },
   mutations: {
     newVisitor (state, msg) {
@@ -32,7 +35,8 @@ const store = new Vuex.Store({
       state.isShowCheckIn = msg
     },
     emitStockDetailsMsg (state, msg) {
-      state.StockDetailsMsg = msg
+      state.StockDetailsMsg.s_id = msg.s_id
+      state.StockDetailsMsg.s_index = msg.s_index
     }
   }
 })

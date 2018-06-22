@@ -223,6 +223,7 @@ export default {
   color: #FFE4AA;
   cursor: pointer;
   font-size: 18px;
+  font-weight: bold;
 }
 .header_nav_items_common {
   color: #222;
