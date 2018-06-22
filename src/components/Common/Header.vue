@@ -264,7 +264,7 @@ export default {
 }
 .header_visitorName {
   font-size: 18px;
-  color: #FFE4AA;
+  color: #222;
   margin-left: 10px;
 }
 .header_personNav {
