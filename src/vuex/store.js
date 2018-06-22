@@ -11,12 +11,13 @@ const store = new Vuex.Store({
     jumpRoterName: 0,
     isShowpersonLogin: false,
     isShowChangeCity: false,
-    isShowCheckIn: true
+    isShowCheckIn: true,
+    StockDetailsMsg: ''
   },
   mutations: {
     newVisitor (state, msg) {
       state.visitor = msg.isSuccess
-      state.visitor = msg.imgUrl
+      state.visitorImg = msg.imgUrl
     },
     getJumpRouterName (state, msg) {
       state.jumpRoterName = msg
@@ -29,6 +30,9 @@ const store = new Vuex.Store({
     },
     emitisShowCheckIn (state, msg) {
       state.isShowCheckIn = msg
+    },
+    emitStockDetailsMsg (state, msg) {
+      state.StockDetailsMsg = msg
     }
   }
 })

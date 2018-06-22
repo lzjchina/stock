@@ -5,6 +5,8 @@ import Aboutus from '@/components/Aboutus/Aboutus'
 import StockPublic from '@/components/StockPublic/StockPublic'
 import StockSchool from '@/components/StockSchool/StockSchool'
 import CreatCards from '@/components/Home/CreatCards'
+import Certification from '@/components/Home/Certification'
+import StockDetails from '@/components/Home/StockDetails'
 
 Vue.use(Router)
 
@@ -12,6 +14,10 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect: '/Home'
+    },
+    {
+      path: '/Home',
       name: 'Home',
       component: Home
     },
@@ -34,6 +40,16 @@ export default new Router({
       path: '/CreatCards',
       name: 'CreatCards',
       component: CreatCards
+    },
+    {
+      path: '/Certification',
+      name: 'Certification',
+      component: Certification
+    },
+    {
+      path: '/StockDetails',
+      name: 'StockDetails',
+      component: StockDetails
     }
   ]
 })

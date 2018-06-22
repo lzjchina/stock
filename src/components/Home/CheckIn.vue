@@ -55,7 +55,7 @@
         <span>我已同意并阅读</span>
         <b>《用户协议》</b>
       </li>
-      <li class="checkin_registerBtn">
+      <li class="checkin_registerBtn" @click="CompanyRegister">
         注册
       </li>
       <li class="checkin_now">
@@ -71,7 +71,7 @@ export default {
   name: 'CheckIn',
   data () {
     return {
-      NameOnFocus: true,
+      NameOnFocus: false,
       pswOnFocus: false,
       iscode: false,
       isAgree: false,
@@ -132,7 +132,14 @@ export default {
       this.$store.commit('emitisShowpersonLogin', true)
     },
     personRegister: function () {
-      this.$router.push('/CreatCards')
+      if (this.isAgree) {
+        this.$router.push('/CreatCards')
+      }
+    },
+    CompanyRegister: function () {
+      if (this.isAgree) {
+        this.$router.push('/Certification')
+      }
     }
   }
 }

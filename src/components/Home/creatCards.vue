@@ -8,39 +8,45 @@
         <ul class="CreatCards_inputArea">
           <li>
             <h4 class="CreatCards_inputNames">所属公司</h4>
-            <input class="CreatCards_oneInput" type="text" name="companyName" placeholder="请填写公司的工商登记名称，例如：深圳股王金来网络有限公司" />
+            <input class="CreatCards_oneInput" type="text" name="companyName" placeholder="请填写公司的工商登记名称，例如：深圳股王金来网络有限公司" v-model="cardsMsg.companyName"/>
           </li>
           <li>
             <h4 class="CreatCards_inputNames">证件类型</h4>
-            <select v-model="selectCardName" class="CreatCards_inputCardsType">
-              <option v-for="(items, index) in cardsTypes" :value="items.name" :key="index">{{items.name}}</option>
-              }
-            </select>
-            <div>
-              <input type="text" name="companyName" placeholder="请填写公司的工商登记名称，例如：深圳股王金来网络有限公司" />
-              <p>请准确填写，如有填写错误，将会影响后续等业务</p>
+            <div class="CreatCards_inputCardsTypeBox">
+              <select v-model="cardsMsg.cardType.selectCardName" class="CreatCards_inputCardsType">
+                <option v-for="(items, index) in cardsTypes" :value="items.name" :key="index">{{items.name}}</option>
+                }
+              </select>
+              <div class="CreatCards_inputCardsTypeNames">
+                <input type="text" name="companyName" placeholder="请输入11位证件号码哦" v-model="cardsMsg.cardType.selectCardNum"/>
+                <img src="static/images/logos/search.png" alt="" class="CreatCards_tipLogo1">
+                <p>请准确填写，如有填写错误，将会影响后续等业务</p>
+              </div>
             </div>
           </li>
           <li>
             <h4 class="CreatCards_inputNames">真实姓名</h4>
-            <input class="CreatCards_oneInput" type="text" name="companyName" placeholder="请填写真实姓名" />
+            <input class="CreatCards_oneInput" type="text" name="companyName" placeholder="请填写真实姓名" v-model="cardsMsg.OwnerName"/>
           </li>
           <li>
             <h4 class="CreatCards_inputNames">办公地址</h4>
-            <select v-model="selectwPosition" class="CreatCards_inputCardsType">
+            <select v-model="cardsMsg.workLocal.selectwPosition" class="CreatCards_inputCardsType">
               <option v-for="(items, index) in workPosition" :value="items.wPosition" :key="index">{{items.wPosition}}</option>
               }
             </select>
-            <input type="text" name="companyName" placeholder="请填写公司的工商登记名称，例如：深圳股王金来网络有限公司" />
+            <input type="text" name="companyName" placeholder="详细地址（选填）" class="CreatCards_companyName" v-model="cardsMsg.workLocal.selectwPositionDetails"/>
           </li>
           <li>
             <h4 class="CreatCards_inputNames">邮箱</h4>
-            <input class="CreatCards_oneInput" type="text" name="email" placeholder="请填写常用邮箱" />
+            <input class="CreatCards_oneInput" type="text" name="email" placeholder="请填写常用邮箱" v-model="cardsMsg.email"/>
           </li>
           <li>
             <h4 class="CreatCards_inputNames">微信号</h4>
-            <input class="CreatCards_oneInput" type="text" name="companyName" placeholder="请输入微信号，注意不是微信昵称哦" />
-          </li> 
+            <input class="CreatCards_oneInput" type="text" name="companyName" placeholder="请输入微信号，注意不是微信昵称哦" v-model="cardsMsg.wechat"/>
+          </li>
+          <li class="CreatCards_saveBtn" @click="getCreatCardsMsg">
+            保存或跳过
+          </li>
         </ul>
       </div>
     </div>
@@ -60,8 +66,20 @@ export default {
   data () {
     return {
       msg: 'CreatCards',
-      selectCardName: '身份证',
-      selectwPosition: '深圳',
+      cardsMsg: {
+        companyName: '',
+        cardType: {
+          selectCardNum: '',
+          selectCardName: '身份证'
+        },
+        workLocal: {
+          selectwPosition: '深圳',
+          selectwPositionDetails: ''
+        },
+        OwnerName: '',
+        email: '',
+        wechat: ''
+      },
       cardsTypes: [
         {
           name: '身份证'
@@ -95,7 +113,19 @@ export default {
         {
           wPosition: '广西'
         }
-      ]
+      ],
+      visitorMsg: {
+        isSuccess: true,
+        imgUrl: 'static/images/logos/search.png'
+      }
+    }
+  },
+  methods: {
+    getCreatCardsMsg: function () {
+      // console.log(this.cardsMsg)
+      this.$store.commit('newVisitor', this.visitorMsg)
+      this.$store.commit('emitisShowCheckIn', false)
+      this.$router.push('/')
     }
   }
 }
@@ -155,5 +185,49 @@ export default {
   line-height: 40px;
   color: #222;
   font-size: 14px;
+  border-radius: 4px;
+}
+.CreatCards_inputCardsTypeBox {
+  display: flex;
+}
+.CreatCards_inputCardsTypeNames {
+  margin-left: 20px;
+  position: relative;
+}
+.CreatCards_inputCardsTypeNames input, .CreatCards_companyName {
+  width: 402px;
+  height: 40px;
+  padding: 0 28px 0 10px;
+  line-height: 40px;
+  font-size: 14px;
+  border: 1px solid #B8B8B8;
+  color: #ccc;
+  border-radius: 4px;
+}
+.CreatCards_companyName {
+  margin-left: 16px;
+}
+.CreatCards_inputCardsTypeNames p {
+  font-size: 14px;
+  color: #F05858;
+  margin-top: 11px;
+}
+.CreatCards_tipLogo1 {
+  width: 16px;
+  height: 16px;
+  top: 12px;
+  right: 12px;
+  position: absolute;
+}
+.CreatCards_saveBtn {
+  width: 160px !important;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #C79C37;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
 }
 </style>

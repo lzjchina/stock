@@ -110,7 +110,7 @@ export default {
       }
     },
     showCheckIn: function () {
-      console.log(123132156465)
+      // console.log(123132156465)
       this.$store.commit('emitisShowpersonLogin', false)
       this.$store.commit('emitisShowCheckIn', true)
     }

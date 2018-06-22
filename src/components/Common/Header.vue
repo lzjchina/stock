@@ -15,13 +15,21 @@
         </li>
       </ul>
       <!-- 个人、企业会员 -->
-      <div class="header_login">
-        <span v-if="false" class="header_login_personal">个人会员</span>
-        <span v-if="false" class="header_login_company">企业会员</span>
-        <div v-if="getLoginSuccess">
-          <img :src="this.$store.state.visitorImg">
-          <span style="font-size: 18px;color: #fff;margin-left: 15px;">mingzi</span>
+      <div class="header_login" @mouseover="showHeader_personNav" @mouseout="hideHeader_personNav">
+        <!-- <span v-if="false" class="header_login_personal">个人会员</span>
+        <span v-if="false" class="header_login_company">企业会员</span> -->
+        <div v-if="getLoginSuccess" class="header_loginState">
+          <img :src="this.getLoginSuccessImg" class="header_visitorImg">
+          <span class="header_visitorName">mingzi</span>
         </div>
+        <transition enter-active-class="slideInDown" leave-active-class="zoomOutLeft">
+          <ul class="header_personNav animated" v-if="isShowHeader_personNav">
+            <li><router-link to="/">基本信息</router-link></li>
+            <li><router-link to="/Aboutus">我的项目</router-link></li>
+            <li><router-link to="/">账户安全</router-link></li>
+            <li @click="outLogin">安全退出</li>
+          </ul>
+        </transition>
       </div>
     </div>
   </div>
@@ -32,6 +40,7 @@ export default {
   name: 'Header',
   data () {
     return {
+      isShowHeader_personNav: false,
       routNun: '',
       loginSuccess: false,
       header_logo: '股往金来',
@@ -56,7 +65,11 @@ export default {
           url: '/Aboutus',
           isActive: false
         }
-      ]
+      ],
+      visitorMsgCommonOut: {
+        isSuccess: false,
+        imgUrl: 'static/images/logos/search.png'
+      }
     }
   },
   props: ['propRouternum', 'getBgcolor', 'isConmonStyle', 'ConmonActive'],
@@ -86,9 +99,22 @@ export default {
     },
     showChangeCity: function () {
       this.$store.commit('emitisShowChangeCity', true)
+    },
+    showHeader_personNav: function () {
+      this.isShowHeader_personNav = true
+    },
+    hideHeader_personNav: function () {
+      this.isShowHeader_personNav = false
+    },
+    outLogin: function () {
+      this.$store.commit('newVisitor', this.visitorMsgCommonOut)
+      this.$store.commit('emitisShowCheckIn', true)
     }
   },
   computed: {
+    getLoginSuccessImg: function () {
+      return this.$store.state.visitorImg
+    },
     getLoginSuccess: function () {
       return this.$store.state.visitor
     }
@@ -208,13 +234,74 @@ export default {
   color: #222;
 }
 .header_login {
+  position: relative;
   display: flex;
   justify-content: center;
 }
-.header_login_personal, .header_login_company {
+/*.header_login_personal, .header_login_company {
   margin: 0 9px;
   font-size: 16px;
   color: #777;
   cursor: pointer;
+}*/
+.header_loginState {
+  display: flex;
+  align-items: center;
+  width: 156px;
+  height: 80px;
+  cursor: pointer;
+}
+.header_login:hover .header_loginState{
+  background: #FFF8E8;
+}
+/*.header_login:hover .header_personNav{
+  display: block;
+}*/
+.header_visitorImg {
+  width: 50px;
+  height: 50px;
+}
+.header_visitorName {
+  font-size: 18px;
+  color: #FFE4AA;
+  margin-left: 10px;
+}
+.header_personNav {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  padding-top: 3px;
+  /*display: none;*/
+}
+.header_personNav li a {
+  width: 156px;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+  display: inline-block;
+  background: #fff;
+}
+.header_personNav li:first-child a {
+  border-radius: 4px 4px 0 0 ;
+}
+.header_personNav li:last-child {
+  border-radius:  0 0 4px 4px;
+  width: 156px;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+  display: inline-block;
+  background: #fff;
+  cursor: pointer;
+}
+.header_personNav li:last-child:hover {
+ background: #FFF8E8;
+}
+.header_personNav li a:hover {
+  background: #FFF8E8;
 }
 </style>

@@ -3,6 +3,7 @@
     <!-- <img src="./assets/logo.png"> -->
     <!-- <Header></Header> -->
     <!-- <PersonLogin></PersonLogin> -->
+    <ChangeCity></ChangeCity>
     <router-view/>
   </div>
 </template>
@@ -10,9 +11,11 @@
 <script>
 // import Header from './components/Common/Header'
 // import PersonLogin from './components/Common/PersonLogin'
+import ChangeCity from './components/Home/ChangeCity'
 export default {
   name: 'App',
   components: {
+    ChangeCity
     // Header
     // PersonLogin
   }

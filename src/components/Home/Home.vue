@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <Header homenum="0" propRouternum=0 getBgcolor="rgba(45, 45, 45, 0.5)" isConmonStyle=false></Header>
     <!-- 切换城市 -->
-    <ChangeCity></ChangeCity>
+    <!-- <ChangeCity></ChangeCity> -->
     <!-- 注册 -->
     <CheckIn></CheckIn>
     <!-- 登录 -->
@@ -64,12 +64,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(bodyItem, bodyIndex) in homeDta_tbody" :key="bodyIndex">
-              <th class="home_th1">{{bodyItem.entryName}}</th>
-              <th class="home_th2">{{bodyItem.BulletinTitle}}</th>
-              <th class="home_th3">{{bodyItem.Price}}</th>
-              <th class="home_th4" :class="{stating:bodyItem.isStating}">{{bodyItem.state}}</th>
-              <th class="home_th5">{{bodyItem.date}}</th>
+            <tr v-for="(bodyItem, bodyIndex) in homeDta_tbody" :key="bodyIndex" @click="jumpToStockDetails(bodyIndex)">
+                <th class="home_th1">{{bodyItem.entryName}}</th>
+                <th class="home_th2">{{bodyItem.BulletinTitle}}</th>
+                <th class="home_th3">{{bodyItem.Price}}</th>
+                <th class="home_th4" :class="{stating:bodyItem.isStating}">{{bodyItem.state}}</th>
+                <th class="home_th5">{{bodyItem.date}}</th>
             </tr>
           </tbody>
         </table>
@@ -87,7 +87,7 @@
 import Header from './Header'
 import Footer from '../Common/Footer'
 import CheckIn from './CheckIn'
-import ChangeCity from './ChangeCity'
+// import ChangeCity from './ChangeCity'
 import PersonLogin from '../Common/PersonLogin'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
@@ -98,8 +98,7 @@ export default {
     swiper,
     swiperSlide,
     CheckIn,
-    PersonLogin,
-    ChangeCity
+    PersonLogin
   },
   data () {
     return {
@@ -204,6 +203,11 @@ export default {
         // console.log(_this.homeDta_thead)
         // console.log(_this.homeDta_tbody)
       })
+    },
+    jumpToStockDetails: function (index) {
+      console.log(index)
+      this.$store.commit('emitStockDetailsMsg', index)
+      this.$router.push('/StockDetails?nameNum=' + index)
     }
   }
 }
@@ -451,6 +455,7 @@ export default {
 .home_table tbody tr {
   font-size: 18px;
   color: #444;
+  cursor: pointer;
 }
 .home_table tbody tr th{
   font-weight: normal;

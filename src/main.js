@@ -8,9 +8,10 @@ import 'swiper/dist/css/swiper.css'
 import axios from 'axios'
 import Vuex from 'vuex'
 import store from './vuex/store'
+import animate from 'animate.css'
 
 Vue.config.productionTip = false
-Vue.use(VueAwesomeSwiper, Vuex)
+Vue.use(VueAwesomeSwiper, Vuex, animate)
 Vue.prototype.$ajax = axios
 
 /* eslint-disable no-new */
