@@ -5,7 +5,7 @@
       <img class="aboutus_bigImg" src="static/images/aboutusb.png"/>
       <div class="aboutus_nav">
         <ul class="aboutus_navBox">
-          <li :class="{active:items.isActive}" v-for="(items, index) in usNavName" :key="index" @click="changeSection(items)">{{items.navName}}</li>
+          <li :class="{active:items.isActive}" v-for="(items, index) in usNavName" :key="index" @click="changeSection(items, index)">{{items.navName}}</li>
         </ul>
       </div>
       <!-- 提示标题 -->
@@ -14,7 +14,7 @@
         <b>{{tipsTitleEn}}</b>
       </div>
       <!-- 关于我们 -->
-      <div class="Aboutus_aboutus">
+      <div class="Aboutus_aboutus" v-show="isAboutus">
         <div class="Aboutus_aboutus_sec1">
           <p>股王金来</p>
           <p>中国专业的股权转让平台</p>
@@ -52,6 +52,86 @@
           </div>
         </div>
       </div>
+      <!-- 实力优势 -->
+      <div v-show="isAdvantage" class="Aboutus_Advantage">
+        <ul>
+          <li class="Aboutus_listBox clearfix">
+            <div class="imgBox">
+              <div class="imgBoxLine"></div>
+              <img src="static/images/aboutusimg2.png">
+            </div>
+            <div class="textBox">
+              <div>
+                <img src="static/images/aboutusimg4.png">
+                <h3>产品优势</h3>
+              </div>
+              <h4>专业的产品开发团队，完善的产品引入审核流程</h4>
+              <p>股王金来以优质资产的价值发现和稳健成长为基础，以“为客户创造价值”为产品设计原则，通过专业的产品开发团队、严谨完善的产品引入审核流程，深入研究市场需求，不断进行产品创新</p>
+            </div>
+          </li>
+          <li class="Aboutus_listBox clearfix">
+            <div class="imgBox">
+              <div class="imgBoxLine"></div>
+              <img src="static/images/aboutusimg2.png">
+            </div>
+            <div class="textBox">
+              <div>
+                <img src="static/images/aboutusimg4.png">
+                <h3>产品优势</h3>
+              </div>
+              <h4>专业的产品开发团队，完善的产品引入审核流程</h4>
+              <p>股王金来以优质资产的价值发现和稳健成长为基础，以“为客户创造价值”为产品设计原则，通过专业的产品开发团队、严谨完善的产品引入审核流程，深入研究市场需求，不断进行产品创新</p>
+            </div>
+          </li>
+          <li class="Aboutus_listBox clearfix">
+            <div class="imgBox">
+              <div class="imgBoxLine"></div>
+              <img src="static/images/aboutusimg2.png">
+            </div>
+            <div class="textBox">
+              <div>
+                <img src="static/images/aboutusimg4.png">
+                <h3>产品优势</h3>
+              </div>
+              <h4>专业的产品开发团队，完善的产品引入审核流程</h4>
+              <p>股王金来以优质资产的价值发现和稳健成长为基础，以“为客户创造价值”为产品设计原则，通过专业的产品开发团队、严谨完善的产品引入审核流程，深入研究市场需求，不断进行产品创新</p>
+            </div>
+          </li>
+        </ul>
+        <div>
+          <div>
+            <img src="static/images/aboutusimg4.png">
+            <h3>产品优势</h3>
+          </div>
+          <ul>
+            <li>
+              <div class="imgBox">
+                <div class="imgBoxLine"></div>
+                <img src="static/images/aboutusimg2.png">
+              </div>
+              <h2></h2>
+            </li>
+            <li>
+              <div class="imgBox">
+                <div class="imgBoxLine"></div>
+                <img src="static/images/aboutusimg2.png">
+              </div>
+              <h2></h2>
+            </li>
+            <li>
+              <div class="imgBox">
+                <div class="imgBoxLine"></div>
+                <img src="static/images/aboutusimg2.png">
+              </div>
+              <h2></h2>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 企业荣誉 -->
+      <div v-show="isHonor" class="Aboutus_Honor">
+        honor
+      </div>
     </div>
     <Footer></Footer>
   </div>
@@ -71,6 +151,9 @@ export default {
       msg: 'Aboutus',
       tipsTitleCh: '关于我们',
       tipsTitleEn: 'ABOUT US',
+      isAboutus: false,
+      isAdvantage: true,
+      isHonor: false,
       usNavName: [
         {
           navName: '关于我们',
@@ -111,7 +194,7 @@ export default {
     }
   },
   methods: {
-    changeSection: function (items) {
+    changeSection: function (items, index) {
       var _this = this
       for (var i = _this.usNavName.length - 1; i >= 0; i--) {
         _this.usNavName[i].isActive = false
@@ -119,6 +202,19 @@ export default {
       items.isActive = true
       this.tipsTitleCh = items.navName
       this.tipsTitleEn = items.tipsTitleEn
+      if (index === 0) {
+        this.isAboutus = true
+        this.isAdvantage = false
+        this.isHonor = false
+      } else if (index === 1) {
+        this.isAboutus = false
+        this.isAdvantage = true
+        this.isHonor = false
+      } else if (index === 2) {
+        this.isAboutus = false
+        this.isAdvantage = false
+        this.isHonor = true
+      }
     }
   }
 }
@@ -254,7 +350,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 140px;
+  margin-left: 174px;
 }
 .Aboutus_aboutus_sec3 ul li:first-child {
   margin-left: 0px;
@@ -305,5 +401,88 @@ export default {
   color: #222;
   border-top: 0;
   border-bottom: 0;
+}
+.Aboutus_Advantage {
+  width: 1200px;
+  margin: 0 auto;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow: hidden;
+}
+.float_l {
+  float: left;
+}
+.float_r {
+  float: right;
+}
+.Aboutus_Advantage .imgBox {
+  width: 580px;
+  height: 320px;
+  position: relative;
+}
+.Aboutus_Advantage .imgBox .imgBoxLine {
+  width: 560px;
+  height: 300px;
+  position: absolute;
+  border: 1px solid #CA9F3B;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.Aboutus_Advantage .imgBox img {
+  width: 560px;
+  height: 300px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.Aboutus_listBox {
+  margin-top: 88px;
+}
+.Aboutus_listBox:nth-child(2n) .imgBox {
+  float: right;
+}
+.Aboutus_listBox:nth-child(2n) .textBox {
+  width: 504px;
+  margin-right: 37px;
+  float: left;
+}
+.Aboutus_listBox:nth-child(2n + 1) .imgBox {
+  float: left;
+}
+.Aboutus_listBox:nth-child(2n + 1) .textBox {
+  width: 504px;
+  margin-right: 37px;
+  float: right;
+}
+.textBox div {
+  display: flex;
+  align-items: center;
+}
+.textBox div img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.textBox div h3 {
+  font-size: 24px;
+  color: #222;
+  font-weight: bold;
+}
+.textBox h4 {
+  font-size: 24px;
+  color: #222;
+  line-height: 84px;
+}
+.textBox p {
+  font-size: 14px;
+  color: #777;
+  line-height: 30px;
 }
 </style>
